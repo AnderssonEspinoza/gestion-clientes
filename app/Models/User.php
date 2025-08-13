@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -46,8 +47,46 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Relación existente con clientes asignados
+     */
     public function clientesAsignados(){
         return $this->hasManyThrough(Cliente::class, Asignacion::class, 'user_id', 'id', 'id', 'cliente_id');
     }
 
+    /**
+     * Check if user is admin
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Check if user is regular user
+     */
+    public function isUser(): bool
+    {
+        return $this->role === 'user';
+    }
+
+    /**
+     * Check if user has specific role
+     */
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role;
+    }
+
+        /**
+     * Obtener el Rol 
+     */
+        public function getRoleDisplayName(): string
+        {
+            return match($this->role) {
+                'admin' => 'Administrador(a)',
+                'user' => 'Asesor(a)',
+                default => 'Usuario'
+            };
+        }
 }

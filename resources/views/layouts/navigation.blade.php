@@ -5,7 +5,7 @@
             
             <!-- LOGO -->
             <div class="flex-shrink-0 flex items-center text-xl font-bold text-gray-800 dark:text-white">
-                 AKANA TECHNOLOGY
+                 AKANA RESPONDE
             </div>
 
             <!-- Menú Desktop -->
@@ -13,9 +13,11 @@
                 <a href="{{ route('clientes.index') }}" class="text-gray-700 dark:text-gray-200 hover:text-red-500">
                     Clientes Disponibles
                 </a>
-                <a href="{{ route('clientes.mis') }}" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">
+
+                <a href="{{ route('mis-clientes') }}" class="text-gray-700 dark:text-gray-200 hover:text-red-500">
                     Mis Clientes
                 </a>
+
                 <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-blue-500">
                     Reportes
                 </a>
@@ -23,7 +25,7 @@
 
             <!-- USUARIO + LOGOUT (DESKTOP) -->
             <div class="hidden md:flex items-center space-x-4">
-                <span class="text-gray-700 dark:text-gray-200">{{ Auth::user()->name }}</span>
+                <span class="text-gray-700 dark:text-gray-200">{{ Auth::user()->getRoleDisplayName() }}: {{ Auth::user()->name }}</span>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded">
@@ -47,7 +49,7 @@
         <a href="{{ route('clientes.index') }}" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800">
             Clientes Disponibles
         </a>
-        <a href="{{ route('clientes.mis') }}" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800">
+        <a href="{{ route('mis-clientes') }}" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800">
             Mis Clientes
         </a>
         <a href="#" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800">
